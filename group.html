@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="/Public/js/html5.js"></script>
+<script type="text/javascript" src="/Public/js/respond.min.js"></script>
+<script type="text/javascript" src="/Public/js/PIE_IE678.js"></script>
+<![endif]-->
+
+<link href="http://adm.nongchanlian.com/Public/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+<link rel="stylesheet" href="http://adm.nongchanlian.com/Public/css/style.css"/>
+
+<!-- 区域css文件 addgroup.css -->
+<link rel="stylesheet" href="addgroup.css"/>
+
+<!--[if IE 7]>
+<link rel="stylesheet" href="/Public/assets/css/font-awesome-ie7.min.css" />
+<![endif]-->
+</head>
+<body>
+<div style="width: 800px;margin:50px">
+	<table cellspacing="0" cellpadding="0" border="0" class="addgroupBox">
+		<thead>
+			<tr>
+				<th class="textLeft">可配送至</th>
+				<th width="150">运费【首件】（元）</th>
+				<th width="150">续费【续件】（元）</th>
+				<th width="50">操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- 
+				此tr为一个循环，若页面为修改，数据按以下格式读取，读取时保证"group_name"及"provinceText"都为省份数据
+				数据存储时以 "provinceText" 内的数据存储而不是"group_name"中的
+				删除及编辑操作代码在当前页面底部
+			-->
+			<tr>
+				<td class="textLeft">
+				<input type="hidden" name="group_name" value="上海市、江苏省、浙江省、安徽省、江西省">
+					<span class="provinceText">上海市、江苏省、浙江省、安徽省、江西省</span>
+					<a href="javascript:;" class="edit_info" onclick="editGroup(this,id)">编辑</a>
+				</td>
+				<td><input type="number" name="first_price" value="0.00"></td>
+				<td><input type="number" name="next_price" value="0.00"></td>
+				<td><a href="javascript:;" onclick="deleteGroup(this,id)">删除</a></td>
+			</tr>
+
+		</tbody>
+	</table>
+	<div class="add_newGroup">
+		<a href="javascript:;" onclick="optionGroup()">指定可配送区域或运费+</a>
+	</div>
+</div>
+
+<div id="chose_group">
+	<div class="chose_groupBox">
+		<h1>选择区域<a href="javascript:;" class="close_groupBox" onclick="close_groupBox()">关闭</a></h1>
+		<div class="provinceBox_list">
+			<!-- 省份选择区域 -->
+		</div>
+		<div class="groupbtn_box">
+			<span class="groupbtn_notice">请至少选择一个省份进行勾选！</span>
+			<a href="javascript:;" class="btn_submit btn btn-primary" onclick="submit_groupBox()">确认</a>
+			<a href="javascript:;" class="btn_cancel btn" onclick="close_groupBox()">取消</a>
+		</div>
+</div>
+<script src="http://adm.nongchanlian.com/Public/js/jquery.min.js?v=2.1.4"></script>
+<script src="http://adm.nongchanlian.com/Public/js/bootstrap.min.js"></script>
+<!-- 区域js文件 addGroup.css -->
+<script type="text/javascript" src="addGroup.js"></script>
+<script type="text/javascript">
+	/*
+		删除
+	 */
+	function deleteGroup(obj,id){
+		/*id用作修改时使用*/
+		$(obj).parents("tr").remove();
+	}
+
+	/*
+		编辑
+	 */
+	function editGroup(obj,id){
+		/*id用作修改下删除时使用*/
+		is_add = false;
+		is_index = $(obj).parents("tr").index();
+		optionGroup()
+	}
+</script>
+</body>
+</html>
