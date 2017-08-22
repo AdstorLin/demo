@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>秒到现金</title>
+	<link rel="stylesheet" href="css/jquery.fullPage.css">
+	<link rel="stylesheet" href="css/animate.min.css">
+	<link rel="stylesheet" href="css/pageAnimate.css">
+</head>
+<body>
+<div id="fullpage">
+	<div class="section homepage" id="section1">
+		<div class="page1_infoBox">
+			<img src="img/logo.png" alt="" class="logoImg">
+			<div class="downBtnBox">
+				<img src="img/qcoder.png" alt="">
+				<div class="downBtn">
+					<a href="###" class="down_ios"></a>
+					<a href="###" class="down_android"></a>
+				</div>
+			</div>
+		</div>
+		<div class="page1_imgBox">
+			<img src="img/page1_phone1.png" alt="" id="page1_phone1">
+			<img src="img/page1_phone2.png" alt="" id="page1_phone2">
+		</div>
+		<a class="nextPage nextPage_gray" href="#page2"></a>
+	</div>
+	<div class="section">
+		<div id="page2_bg"></div>
+		<img src="img/page2_phone.png" alt="" id="page2_phone">
+		<img src="img/page2_text.png" alt="" id="page2_text">
+		<a class="nextPage nextPage_gray" href="#page3"></a>
+	</div>
+	<div class="section">
+		<div id="page3_bg"></div>
+		<img src="img/page3_phone.png" alt="" id="page3_phone">
+		<img src="img/page3_text.png" alt="" id="page3_text">
+		<a class="nextPage nextPage_gray" href="#page4"></a>
+	</div>
+	<div class="section">
+		<div id="page4_bg"></div>
+		<img src="img/page4_phone.png" alt="" id="page4_phone">
+		<img src="img/page4_text.png" alt="" id="page4_text">
+	</div>
+</div>
+<div class="copyright">
+	<span>杭州道森坦利科技有限公司 &copy;版权所有</span>
+	<span>客服服务电话：0571-89936835</span>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.fullPage.min.js"></script>
+<script>
+$(function(){
+	$('#fullpage').fullpage({
+		// 'sectionsColor': ['#ff6357', '#fff', '#ff6357', '#eee'],
+		'navigation': true,
+	    'scrollingSpeed':500,
+	    'verticalCentered':false,
+	    'anchors': ['page1', 'page2', 'page3', 'page4'],
+	    'css3': true,
+		'slidesColor': ['#F0F2F4', '#fff', '#fff', '#fff'],
+	    'navigationTooltips': ['秒到支付', '极速到账','认证简单','信息安全'],
+	    'verticalCentered': true,
+	    'loopBottom':true,
+
+	    'afterRender': function(){
+	    	//初始化
+	    	setTimeout(function(){
+				$(".page1_imgBox").find("img").addClass("active");
+				$(".downBtnBox").addClass("bottom_show");
+				$(".logoImg").addClass("top_show");
+			}, 200)
+	    },
+	    'afterLoad': function(anchorLink, index){
+	    	//滚动到某一屏后的回调函数
+	    	console.log("当前页面index:"+index)
+	    	if(index == 1 ){
+	    		setTimeout(function(){
+					$(".page1_imgBox").find("img").addClass("active");
+					$(".downBtnBox").addClass("bottom_show");
+					$(".logoImg").addClass("top_show");
+				}, 200)
+	    	}
+	    	if(index == 2){
+	    		$("#page2_phone").attr("class","animated fadeInUp");
+	    		$("#page2_text").attr("class","animated fadeInDown");
+	    		$("#page2_bg").attr("class","animated fadeIn");
+	    	}
+	    	if(index == 3){
+	    		$("#page3_phone").attr("class","animated fadeInUp");
+	    		$("#page3_text").attr("class","animated fadeInDown");
+	    		$("#page3_bg").attr("class","animated fadeIn");
+	    	}
+	    	if(index == 4){
+	    		$("#page4_phone").attr("class","animated fadeInUp");
+	    		$("#page4_text").attr("class","animated fadeInDown");
+	    		$("#page4_bg").attr("class","animated fadeIn")
+	    	}
+	    },
+	    'onLeave': function(index, nextIndex, direction){
+	    	console.log(index+","+nextIndex+","+direction)
+	    	//滚动前的回调函数
+	    	if(index == 1 && direction == 'down'){
+	    		$(".page1_imgBox").find("img").removeClass("active");
+				$(".downBtnBox").removeClass("bottom_show");
+				$(".logoImg").removeClass("top_show");
+	    	}
+	    	if(index == 2 ){
+	    		$("#page2_phone").attr("class","animated fadeOutDown");
+	    		$("#page2_text").attr("class","animated fadeOutUp");
+	    		$("#page2_bg").attr("class","animated fadeOut");
+	    	}
+	    	if(index == 3 ){
+	    		$("#page3_phone").attr("class","animated fadeOutDown");
+	    		$("#page3_text").attr("class","animated fadeOutUp");
+	    		$("#page3_bg").attr("class","animated fadeOut");
+	    	}
+	    	if(index == 4){
+	    		$("#page4_phone").attr("class","animated fadeOutDown");
+	    		$("#page4_text").attr("class","animated fadeOutUp");
+	    		$("#page4_bg").attr("class","animated fadeOut")
+	    	}
+	    }
+
+	});
+
+});
+</script>
+</body>
+</html>
